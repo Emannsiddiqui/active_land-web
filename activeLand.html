@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+    <link rel="stylesheet" href="activeLand.css" />
+    <title>Active Land</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav__bar">
+        <div class="nav__header">
+          <div class="logo nav__logo">
+            <img src="" alt="logo">
+          </div>
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+          </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#booking">Book Now</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#feature">Feature</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#news">News</a></li>
+        </ul>
+      </div>
+    </nav>
+    
+
+    <!-- home -->
+    <header class="header" id="home">
+      <div class="section__container header__container">
+        <div class="header__content">
+          <p class="section__subheader">WELCOME TO ACTIVE LAND</p>
+          <h1>Your Gateway to<br />Sports and Wellness</h1>
+          <button class="btn">Explore Events</button>
+        </div>
+      
+    </header>
+    
+<!-- upcoming event countdown -->
+    <section class="countdown">
+      <div class="content">
+          <h2>Upcoming Event: Beach Sports Extravaganza</h2>
+          <div id="countdown-timer">
+              <div class="time-box">
+                  <span id="days"></span>
+                  <p>Days</p>
+              </div>
+              <div class="time-box">
+                  <span id="hours"></span>
+                  <p>Hours</p>
+              </div>
+              <div class="time-box">
+                  <span id="minutes"></span>
+                  <p>Minutes</p>
+              </div>
+              <div class="time-box">
+                  <span id="seconds"></span>
+                  <p>Seconds</p>
+              </div>
+          </div>
+          <br>
+          <li><button class="btn">BOOK NOW</button></li>
+      </div>
+  </section>
+
+  <!-- about us -->
+  <section class="about" id="about">
+    <div class="section__container about__container">
+      <div class="about__grid">
+        <div class="about__image">
+          <img src="banner-1.jpg" alt="upcoming event" />
+        </div>
+        <div class="about__card">
+          <span><i class="ri-team-line"></i></span>
+          <h4>Passionate Team</h4>
+          <p>
+            Empowering Sports and Mental Health Awareness through Engaging Events.
+          </p>
+        </div>
+        <div class="about__image">
+          <img src="banner-3.jpg" alt="past event" />
+        </div>
+        <div class="about__card">
+          <span><i class="ri-calendar-event-line"></i></span>
+          <h4>Exciting Events</h4>
+          <p>
+            Join us for exciting sports and wellness events designed to inspire 
+            and empower communities.
+          </p>
+        </div>
+      </div>
+      <div class="about__content">
+        <p class="section__subheader">ABOUT US</p>
+        <h2 class="section__header">Experience the Active Life</h2>
+        <p class="section__description">
+          Active Land is dedicated to organizing transformative events that
+          foster both physical and mental well-being. From thrilling sports
+          challenges to insightful mental health workshops, we create
+          experiences that bring people together, inspire healthy lifestyles,
+          and raise awareness for mental health. Step into a world where
+          movement meets mindfulness, and let us guide you on your journey
+          towards a more active and balanced life.
+        </p>
+        <button class="btn">Join Our Next Event</button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- booking section -->
+  <section class="booking" id="booking">
+    <div class="section__container booking__container">
+      <div class="booking__header">
+        <p class="section__subheader">Booking Options</p>
+        <h2 class="section__header">Join Us at Active Land!</h2>
+        <p class="section__description">
+          Whether you're an enthusiastic participant or a business owner looking to showcase your stall, we have the perfect spot for you.
+        </p>
+      </div>
+  
+      <div class="booking__options">
+        <div class="booking__card">
+          <h3>Register as a Participant</h3>
+          <p>
+            Sign up to take part in our upcoming events, engage in sports activities, and be part of an unforgettable experience.
+          </p>
+          <button class="btn btn-primary" id="open-participant-form">Register Now</button>
+        </div>
+  
+        <div class="booking__card">
+          <h3>Place Your Stall/Business</h3>
+          <p>
+            Book a space to showcase your products or services. Gain exposure to event attendees and network with other businesses.
+          </p>
+          <button class="btn btn-secondary" id="open-stall-form">Book a Stall</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Participant Registration Form (Modal) -->
+    <div class="modal" id="participant-form-modal">
+      <div class="modal-content">
+        <span class="close" id="close-participant-form">&times;</span>
+        <h3>Participant Registration</h3>
+        <form id="participant-form">
+          <label for="name">Full Name:</label>
+          <input type="text" id="name" name="name" required />
+  
+          <label for="email">Email Address:</label>
+          <input type="email" id="email" name="email" required />
+  
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" required />
+  
+          <label for="event">Choose Event:</label>
+          <select id="event" name="event" required>
+            <option value="sports">Sports Event</option>
+            <option value="fitness">Fitness Workshop</option>
+            <option value="mental_health">Mental Health Talk</option>
+          </select>
+  
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Stall/Business Booking Form (Modal) -->
+    <div class="modal" id="stall-form-modal">
+      <div class="modal-content">
+        <span class="close" id="close-stall-form">&times;</span>
+        <h3>Stall/Business Booking</h3>
+        <form id="stall-form">
+          <label for="business-name">Business Name:</label>
+          <input type="text" id="business-name" name="business-name" required />
+  
+          <label for="contact-name">Contact Person:</label>
+          <input type="text" id="contact-name" name="contact-name" required />
+  
+          <label for="email">Email Address:</label>
+          <input type="email" id="email" name="email" required />
+  
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" required />
+  
+          <label for="stall-type">Stall Type:</label>
+          <select id="stall-type" name="stall-type" required>
+            <option value="food">Food Stall</option>
+            <option value="crafts">Crafts and Products</option>
+            <option value="services">Services/Consultancy</option>
+          </select>
+  
+          <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  
+<!-- events section -->
+  <section class="event__container" id="events">
+    <p class="section__subheader">OUR EVENTS</p>
+    <h2 class="section__header">Handpicked Experiences</h2>
+    <div class="event__grid">
+      <div class="event__card">
+        <img src="event-1.jpg" alt="event" />
+        <div class="event__card__details">
+          <div>
+            <h4>Sports Challenge 2024</h4>
+            <p>
+              A thrilling competition featuring multiple sports disciplines,
+              designed to push your limits and foster team spirit.
+            </p>
+          </div>
+          <h3>March 25, 2024</h3>
+        </div>
+      </div>
+      <div class="event__card">
+        <img src="event-2.jpg" alt="event" />
+        <div class="event__card__details">
+          <div>
+            <h4>Mental Wellness Workshop</h4>
+            <p>
+              Join us for a day of mindfulness, meditation, and strategies to
+              enhance your mental health and well-being.
+            </p>
+          </div>
+          <h3>April 10, 2024</h3>
+        </div>
+      </div>
+      <div class="event__card">
+        <img src="event-3.jpg" alt="event" />
+        <div class="event__card__details">
+          <div>
+            <h4>Active Life Marathon</h4>
+            <p>
+              A marathon that combines running and mindfulness, promoting both
+              physical fitness and mental clarity.
+            </p>
+          </div>
+          <h3>May 5, 2024</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+<!-- intro of the acctive land with video of words of ceo whatever can be added -->
+  <section class="intro">
+    <div class="section__container intro__container">
+      <div class="intro__content">
+        <p class="section__subheader">WELCOME TO ACTIVE LAND</p>
+        <h2 class="section__header">Empowering Wellness Through Active Living</h2>
+        <p class="section__description">
+          At Active Land, we believe in the transformative power of sports and mindfulness. From thrilling sports competitions to rejuvenating mental wellness workshops, we create experiences that foster physical vitality and mental clarity.
+        </p>
+        <button class="btn">Join Our Next Event</button>
+      </div>
+      <div class="intro__video">
+        <video src="" alt="video" autoplay muted loop></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- facilites/features-->
+  <section class="section__container feature__container" id="feature">
+    <p class="section__subheader">FACILITIES</p>
+    <h2 class="section__header">Core Features</h2>
+    <div class="feature__grid">
+      <div class="feature__card">
+        <span><i class="ri-run-line"></i></span>
+        <h4>State-of-the-Art Sports Facilities</h4>
+        <p>
+          Our venues are equipped with top-tier sports facilities to ensure an optimal experience for all fitness enthusiasts.
+        </p>
+      </div>
+      <div class="feature__card">
+        <span><i class="ri-brain-line"></i></span>
+        <h4>Mental Wellness Spaces</h4>
+        <p>
+          We offer calming environments specifically designed for mental wellness activities such as meditation, mindfulness, and relaxation.
+        </p>
+      </div>
+      <div class="feature__card">
+        <span><i class="ri-heart-pulse-line"></i></span>
+        <h4>Holistic Health Programs</h4>
+        <p>
+          From physical fitness to mental clarity, our holistic programs cater to the overall well-being of both mind and body.
+        </p>
+      </div>
+      <div class="feature__card">
+        <span><i class="ri-calendar-check-line"></i></span>
+        <h4>Flexible Event Scheduling</h4>
+        <p>
+          We offer a range of flexible scheduling options for events and workshops, so participants can join at their convenience.
+        </p>
+      </div>
+      <div class="feature__card">
+        <span><i class="ri-group-line"></i></span>
+        <h4>Expert Trainers & Coaches</h4>
+        <p>
+          Our team includes experienced trainers and wellness coaches who provide personalized guidance for physical and mental fitness.
+        </p>
+      </div>
+      <div class="feature__card">
+        <span><i class="ri-hand-heart-line"></i></span>
+        <h4>Community Engagement</h4>
+        <p>
+          Active Land is dedicated to fostering a supportive community through group activities, networking, and social events.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- reviews/testimonial section -->
+  <section class="testimonials" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <p class="section__subheader">Customer</p>
+    <h2 class="section__header">Reviews</h2>
+      </div>
+      <div class="testimonial-content">
+        <div class="swiper testimonials-slider js-testimonials-slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide testimonials-item">
+              <div class="info">
+                <img src="testimonial.jpg" alt="">
+                  <div class="text-box">
+                    <h3 class="name">John Doe</h3>
+                  </div>
+              </div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus odit laborum dolores ratione perspiciatis velit, quaerat maxime asperiores eveniet. Alias!</p>
+            </div>
+            <div class="swiper-slide testimonials-item">
+              <div class="info">
+                <img src="testimonial.jpg" alt="">
+                  <div class="text-box">
+                    <h3 class="name">John Doe</h3>
+                  </div>
+              </div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus odit laborum dolores ratione perspiciatis velit, quaerat maxime asperiores eveniet. Alias!</p>
+            </div>
+            <div class="swiper-slide testimonials-item">
+              <div class="info">
+                <img src="testimonial.jpg" alt="">
+                  <div class="text-box">
+                    <h3 class="name">John Doe</h3>
+                  </div>
+              </div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus odit laborum dolores ratione perspiciatis velit, quaerat maxime asperiores eveniet. Alias!</p>
+            </div>
+            <div class="swiper-slide testimonials-item">
+              <div class="info">
+                <img src="testimonial.jpg" alt="">
+                  <div class="text-box">
+                    <h3 class="name">John Doe</h3>
+                  </div>
+              </div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus odit laborum dolores ratione perspiciatis velit, quaerat maxime asperiores eveniet. Alias!</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination js-testimonials-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="stats-container">
+        <div class="stat-box">
+            <h2>50+</h2>
+            <p>Events Organized</p>
+        </div>
+        <div class="stat-box">
+            <h2>10,000+</h2>
+            <p>Participants Engaged</p>
+        </div>
+        <div class="stat-box">
+            <h2>500+</h2>
+            <p>Volunteers</p>
+        </div>
+        <div class="stat-box">
+            <h2>25+</h2>
+            <p>Mental Health Workshops</p>
+        </div>
+    </div>
+</section>
+<!-- if needed, can mention about the stalls and other activites -->
+
+<section class="section__container news__container" id="news">
+  <div class="news__header">
+    <div>
+      <p class="section__subheader">BLOG</p>
+      <h2 class="section__header">News Feeds</h2>
+    </div>
+    <div class="section__nav">
+      <span><i class="ri-arrow-left-line"></i></span>
+      <span><i class="ri-arrow-right-line"></i></span>
+    </div>
+  </div>
+  <div class="news__grid">
+    <div class="news__card">
+      <img src="event-4.jpg" alt="news" />
+      <div class="news__card__title">
+        <p>10th July 2023</p>
+        <p>By Alex</p>
+      </div>
+      <h4>Boost Your Mental Wellness with Sports</h4>
+      <p>
+        Discover how engaging in regular physical activities like yoga and team sports can significantly improve mental well-being.
+      </p>
+    </div>
+    <div class="news__card">
+      <img src="event-5.jpg" alt="news" />
+      <div class="news__card__title">
+        <p>20th August 2023</p>
+        <p>By Olivia</p>
+      </div>
+      <h4>Highlights from Our Recent Wellness Workshop</h4>
+      <p>
+        A recap of our latest mental wellness workshop, where participants engaged in mindfulness sessions, team-building exercises, and sports therapy.
+      </p>
+    </div>
+    <div class="news__card">
+      <img src="event-6.jpg" alt="news" />
+      <div class="news__card__title">
+        <p>5th September 2023</p>
+        <p>By Michael</p>
+      </div>
+      <h4>Outdoor Adventures for Mental Clarity</h4>
+      <p>
+        Explore the benefits of outdoor activities like hiking, cycling, and water sports to enhance your mental clarity and overall wellness.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="section__container footer__container">
+    <div class="footer__col">
+      <div class="logo footer__logo">
+        <div>A</div>
+        <span>ACTIVE<br />LAND</span>
+      </div>
+      <p class="section__description">
+        Active Land is dedicated to promoting mental wellness and physical health through engaging sports and holistic workshops designed for personal growth and well-being.
+      </p>
+      <ul class="footer__socials">
+        <li>
+          <a href="#"><i class="ri-youtube-fill"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="ri-instagram-line"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="ri-facebook-fill"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="ri-linkedin-fill"></i></a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Services</h4>
+      <div class="footer__links">
+        <li><a href="#">Event Management</a></li>
+        <li><a href="#">Sports Activities</a></li>
+        <li><a href="#">Mental Wellness Workshops</a></li>
+        <li><a href="#">Team Building Programs</a></li>
+        <li><a href="#">Corporate Wellness Plans</a></li>
+        <li><a href="#">Consulting & Support</a></li>
+      </div>
+    </div>
+    <div class="footer__col">
+      <h4>Contact Us</h4>
+      <div class="footer__links">
+        <li>
+          <span><i class="ri-phone-fill"></i></span>
+          <div>
+            <h5>Phone Number</h5>
+            <p>+92 3001234567</p>
+          </div>
+        </li>
+        <li>
+          <span><i class="ri-record-mail-line"></i></span>
+          <div>
+            <h5>Email</h5>
+            <p>info@activeland.com</p>
+          </div>
+        </li>
+        <li>
+          <span><i class="ri-map-pin-2-fill"></i></span>
+          <div>
+            <h5>Location</h5>
+            <p>Main Blvd, Karachi, Pakistan</p>
+          </div>
+        </li>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bar">
+    Copyright © 2024 Active Land. All rights reserved.
+  </div>
+</footer>
+
+
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      const swiper = new Swiper('.js-testimonials-slider', {
+        grabCursor: true,
+        spaceBetween: 30,
+        pagination:{
+          el: '.js-testimonials-pagination',
+          clickable: true
+        },
+        breakpoints:{
+          767:{
+            slidesPerView: 2
+          }
+        }
+      });
+    </script>
+    <script src="main.js"></script>
+  </body>
+</html>
