@@ -44,7 +44,7 @@
         <div class="header__content">
           <p class="section__subheader">WELCOME TO ACTIVE LAND</p>
           <h1>Your Gateway to<br />Sports and Wellness</h1>
-          <button class="btn">Explore Events</button>
+          <button class="btn" onclick="window.location.href='#events'">Explore Events</button>
         </div>
       
     </header>
@@ -72,7 +72,7 @@
               </div>
           </div>
           <br>
-          <li><button class="btn">BOOK NOW</button></li>
+          <li><button class="btn" onclick="window.location.href='#booking'">BOOK NOW</button></li>
       </div>
   </section>
 
@@ -114,99 +114,126 @@
           movement meets mindfulness, and let us guide you on your journey
           towards a more active and balanced life.
         </p>
-        <button class="btn">Join Our Next Event</button>
+        <button class="btn" onclick="window.location.href='#booking'">Join Our Next Event</button>
       </div>
     </div>
   </section>
   
-  <!-- booking section -->
-  <section class="booking" id="booking">
-    <div class="section__container booking__container">
-      <div class="booking__header">
-        <p class="section__subheader">Booking Options</p>
-        <h2 class="section__header">Join Us at Active Land!</h2>
-        <p class="section__description">
-          Whether you're an enthusiastic participant or a business owner looking to showcase your stall, we have the perfect spot for you.
+<!-- booking section -->
+<section class="booking" id="booking">
+  <div class="section__container booking__container">
+    <div class="booking__header">
+      <p class="section__subheader">Booking Options</p>
+      <h2 class="section__header">Join Us at Active Land!</h2>
+      <p class="section__description">
+        Whether you're an enthusiastic participant or a business owner looking to showcase your stall, we have the perfect spot for you.
+      </p>
+    </div>
+
+    <div class="booking__options">
+      <div class="booking__card">
+        <h3>Register as a Participant</h3>
+        <p>
+          Sign up to take part in our upcoming events, engage in sports activities, and be part of an unforgettable experience.
         </p>
+        <button class="btn btn-primary" id="open-participant-form">Register Now</button>
       </div>
-  
-      <div class="booking__options">
-        <div class="booking__card">
-          <h3>Register as a Participant</h3>
-          <p>
-            Sign up to take part in our upcoming events, engage in sports activities, and be part of an unforgettable experience.
-          </p>
-          <button class="btn btn-primary" id="open-participant-form">Register Now</button>
-        </div>
-  
-        <div class="booking__card">
-          <h3>Place Your Stall/Business</h3>
-          <p>
-            Book a space to showcase your products or services. Gain exposure to event attendees and network with other businesses.
-          </p>
-          <button class="btn btn-secondary" id="open-stall-form">Book a Stall</button>
-        </div>
+
+      <div class="booking__card">
+        <h3>Place Your Stall/Business</h3>
+        <p>
+          Book a space to showcase your products or services. Gain exposure to event attendees and network with other businesses.
+        </p>
+        <button class="btn btn-secondary" id="open-stall-form">Book a Stall</button>
       </div>
     </div>
-  
-    <!-- Participant Registration Form (Modal) -->
-    <div class="modal" id="participant-form-modal">
-      <div class="modal-content">
-        <span class="close" id="close-participant-form">&times;</span>
-        <h3>Participant Registration</h3>
-        <form id="participant-form">
-          <label for="name">Full Name:</label>
-          <input type="text" id="name" name="name" required />
-  
-          <label for="email">Email Address:</label>
-          <input type="email" id="email" name="email" required />
-  
-          <label for="phone">Phone Number:</label>
-          <input type="tel" id="phone" name="phone" required />
-  
-          <label for="event">Choose Event:</label>
-          <select id="event" name="event" required>
-            <option value="sports">Sports Event</option>
-            <option value="fitness">Fitness Workshop</option>
-            <option value="mental_health">Mental Health Talk</option>
-          </select>
-  
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
+  </div>
+
+  <!-- Participant Registration Form (Modal) -->
+  <div class="modal" id="participant-form-modal">
+    <div class="modal-content">
+      <span class="close" id="close-participant-form">&times;</span>
+      <h3>Participant Registration</h3>
+      <form id="participant-form">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required />
+
+        <label for="event">Choose Event:</label>
+        <select id="event" name="event" required>
+          <option value="sports">Sports Event</option>
+          <option value="fitness">Fitness Workshop</option>
+          <option value="mental_health">Mental Health Talk</option>
+        </select>
+
+        <!-- Payment Screenshot Upload -->
+        <label for="payment-screenshot">Upload Payment Screenshot:</label>
+        <input type="file" id="payment-screenshot" name="payment-screenshot" accept="image/*" required />
+
+        <!-- Consent Checkbox -->
+        <div class="checkbox-container">
+          <input type="checkbox" id="consent" name="consent" required />
+          <label for="consent">I agree that the payment is non-refundable.</label>
+        </div>        
+
+        <!-- Account Details -->
+        <p>Bank Account Details: [Enter Account Number, Bank Name]</p>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
-  
-    <!-- Stall/Business Booking Form (Modal) -->
-    <div class="modal" id="stall-form-modal">
-      <div class="modal-content">
-        <span class="close" id="close-stall-form">&times;</span>
-        <h3>Stall/Business Booking</h3>
-        <form id="stall-form">
-          <label for="business-name">Business Name:</label>
-          <input type="text" id="business-name" name="business-name" required />
-  
-          <label for="contact-name">Contact Person:</label>
-          <input type="text" id="contact-name" name="contact-name" required />
-  
-          <label for="email">Email Address:</label>
-          <input type="email" id="email" name="email" required />
-  
-          <label for="phone">Phone Number:</label>
-          <input type="tel" id="phone" name="phone" required />
-  
-          <label for="stall-type">Stall Type:</label>
-          <select id="stall-type" name="stall-type" required>
-            <option value="food">Food Stall</option>
-            <option value="crafts">Crafts and Products</option>
-            <option value="services">Services/Consultancy</option>
-          </select>
-  
-          <button type="submit" class="btn btn-secondary">Submit</button>
-        </form>
-      </div>
+  </div>
+
+  <!-- Stall/Business Booking Form (Modal) -->
+  <div class="modal" id="stall-form-modal">
+    <div class="modal-content">
+      <span class="close" id="close-stall-form">&times;</span>
+      <h3>Stall/Business Booking</h3>
+      <form id="stall-form">
+        <label for="business-name">Business Name:</label>
+        <input type="text" id="business-name" name="business-name" required />
+
+        <label for="contact-name">Contact Person:</label>
+        <input type="text" id="contact-name" name="contact-name" required />
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required />
+
+        <label for="stall-type">Stall Type:</label>
+        <select id="stall-type" name="stall-type" required>
+          <option value="food">Food Stall</option>
+          <option value="crafts">Crafts and Products</option>
+          <option value="services">Services/Consultancy</option>
+        </select>
+
+        <!-- Payment Screenshot Upload -->
+        <label for="payment-screenshot-stall">Upload Payment Screenshot:</label>
+        <input type="file" id="payment-screenshot-stall" name="payment-screenshot-stall" accept="image/*" required />
+
+        <!-- Consent Checkbox -->
+        <div class="checkbox-container">
+          <input type="checkbox" id="consent" name="consent" required />
+          <label for="consent">I agree that the payment is non-refundable.</label>
+        </div>        
+
+
+        <!-- Account Details -->
+        <p>Bank Account Details: [Enter Account Number, Bank Name]</p>
+
+        <button type="submit" class="btn btn-secondary">Submit</button>
+      </form>
     </div>
-  </section>
-  
+  </div>
+</section>
+
   
 <!-- events section -->
   <section class="event__container" id="events">
@@ -264,7 +291,7 @@
         <p class="section__description">
           At Active Land, we believe in the transformative power of sports and mindfulness. From thrilling sports competitions to rejuvenating mental wellness workshops, we create experiences that foster physical vitality and mental clarity.
         </p>
-        <button class="btn">Join Our Next Event</button>
+        <button class="btn" onclick="window.location.href='#booking'">Join Our Next Event</button>
       </div>
       <div class="intro__video">
         <video src="" alt="video" autoplay muted loop></video>
