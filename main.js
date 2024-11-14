@@ -24,7 +24,7 @@ if (menuBtn && navLinks) {
 
 
 function countdownTimer() {
-  const eventDate = new Date("Sep 30, 2024 10:00:00").getTime();
+  const eventDate = new Date("Oct 30, 2024 10:00:00").getTime();
   const interval = setInterval(function () {
     const now = new Date().getTime();
     const timeLeft = eventDate - now;
