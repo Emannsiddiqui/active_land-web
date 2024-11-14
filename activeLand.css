@@ -464,6 +464,92 @@ nav {
   background-color: var(--secondary-color);
 }
 
+/* Checkbox Styles */
+.modal-content .checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+.modal-content .checkbox-container input[type="checkbox"] {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.modal-content .checkbox-container label {
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Upload Payment Styles */
+.modal-content input[type="file"] {
+  border: none;
+  background-color: var(--white);
+  box-shadow: none;
+  padding: 0;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.modal-content input[type="file"]::file-selector-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: var(--primary-color);
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-content input[type="file"]::file-selector-button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Consent Checkbox in the same line */
+.modal-content .checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-content .checkbox-container input[type="checkbox"] {
+  margin-right: 10px;
+  margin-top: 15px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.modal-content .checkbox-container label {
+  font-size: 1rem;
+  color: var(--text-light);
+  cursor: pointer;
+  line-height: 1.5; /* Ensures proper alignment with the checkbox */
+}
+
+
+/* Account Details Styles */
+.modal-content .account-details {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: var(--text-dark);
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.modal-content .account-details p {
+  margin: 0;
+  font-weight: bold;
+}
+
+
 /* Close Button */
 .close {
   position: absolute;
@@ -957,7 +1043,7 @@ nav {
     align-items: center;
   }
 
-  .room__grid {
+  .event__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1008,7 +1094,7 @@ nav {
     gap: 2rem;
   }
 
-  .room__grid {
+  .event__grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
   }
@@ -1020,4 +1106,69 @@ nav {
   .news__grid {
     gap: 2rem;
   }
+}
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+  /* Section headers */
+  .section__header {
+    font-size: 2rem;
+  }
+
+  /* Header text */
+  .header__container h1 {
+    font-size: 3rem;
+    line-height: 4rem;
+  }
+
+  /* Countdown timer */
+  .countdown h2 {
+    font-size: 2rem;
+  }
+
+  .time-box {
+    padding: 20px 30px;
+    font-size: 20px;
+  }
+
+  .time-box span {
+    font-size: 40px;
+  }
+
+  /* Event cards grid */
+  .event__grid {
+    grid-template-columns: 1fr; /* Single column layout */
+  }
+
+  /* About section grid */
+  .about__container {
+    display: block; /* Stack elements vertically */
+  }
+
+  .about__grid {
+    grid-template-columns: 1fr; /* Single column for each card */
+  }
+
+  /* Intro section */
+  .intro__container {
+    display: block;
+  }
+
+  /* Booking cards grid */
+  .booking__options {
+    grid-template-columns: 1fr; /* Stack the cards vertically */
+  }
+
+  /* Modal for smaller screens */
+  .modal-content {
+    width: 95%;
+    margin: 30% auto;
+  }
+
+  /* Navigation links for mobile */
+  .nav__links {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+ 
 }
