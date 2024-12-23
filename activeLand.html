@@ -132,9 +132,9 @@
 
     <div class="booking__options">
       <div class="booking__card">
-        <h3>Register as a Participant</h3>
+        <h3>Book Your Ticket</h3>
         <p>
-          Sign up to take part in our upcoming events, engage in sports activities, and be part of an unforgettable experience.
+          Book your ticket now for being a part of our upcoming event, engage in sports activities, and be part of an unforgettable experience.
         </p>
         <button class="btn btn-primary" id="open-participant-form">Register Now</button>
       </div>
@@ -149,89 +149,219 @@
     </div>
   </div>
 
-  <!-- Participant Registration Form (Modal) -->
-  <div class="modal" id="participant-form-modal">
-    <div class="modal-content">
-      <span class="close" id="close-participant-form">&times;</span>
-      <h3>Participant Registration</h3>
-      <form id="participant-form">
+<!-- Participant Registration Form (Modal) -->
+<div class="modal" id="participant-form-modal">
+  <div class="modal-content">
+    <span class="close" id="close-participant-form">&times;</span>
+    <h3>Participant Registration</h3>
+    <form id="participant-form">
+      <!-- Booking Options -->
+      <label for="booking-type">Choose Booking Type:</label>
+      <select id="booking-type" name="booking-type" required>
+        <option value="">-- Select an Option --</option>
+        <option value="one">Book for One</option>
+        <option value="group">Book for Group</option>
+      </select>
+
+      <!-- Book for One Fields -->
+      <div id="single-fields" style="display: none;">
         <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name" required />
+        <input type="text" id="name" name="name" />
 
         <label for="email">Email Address:</label>
-        <input type="email" id="email" name="email" required />
+        <input type="email" id="email" name="email" />
 
         <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" required />
+        <input type="tel" id="phone" name="phone" />
 
-        <label for="event">Choose Event:</label>
-        <select id="event" name="event" required>
-          <option value="sports">Sports Event</option>
-          <option value="fitness">Fitness Workshop</option>
-          <option value="mental_health">Mental Health Talk</option>
-        </select>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="1" required />
 
-        <!-- Payment Screenshot Upload -->
-        <label for="payment-screenshot">Upload Payment Screenshot:</label>
-        <input type="file" id="payment-screenshot" name="payment-screenshot" accept="image/*" required />
+        <label for="occupation">Occupation:</label>
+        <input type="text" id="occupation" name="occupation" required />
+      </div>
 
-        <!-- Consent Checkbox -->
-        <div class="checkbox-container">
-          <input type="checkbox" id="consent" name="consent" required />
-          <label for="consent">I agree that the payment is non-refundable.</label>
-        </div>        
+      <!-- Book for Group Fields -->
+      <div id="group-fields" style="display: none;">
+        <label for="group-size">Number of People:</label>
+        <input type="number" id="group-size" name="group-size" min="2" />
 
-        <!-- Account Details -->
-        <p>Bank Account Details: [Enter Account Number, Bank Name]</p>
+        <div id="group-participants">
+          <!-- Dynamically add participant fields here -->
+        </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
+        <button type="button" id="add-participant">Add Participant</button>
+      </div>
+
+      <!-- Redirect to WhatsApp -->
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </div>
+</div>
 
-  <!-- Stall/Business Booking Form (Modal) -->
-  <div class="modal" id="stall-form-modal">
-    <div class="modal-content">
-      <span class="close" id="close-stall-form">&times;</span>
-      <h3>Stall/Business Booking</h3>
-      <form id="stall-form">
-        <label for="business-name">Business Name:</label>
-        <input type="text" id="business-name" name="business-name" required />
+<script>
+  const bookingType = document.getElementById("booking-type");
+  const singleFields = document.getElementById("single-fields");
+  const groupFields = document.getElementById("group-fields");
+  const groupParticipants = document.getElementById("group-participants");
+  const addParticipantBtn = document.getElementById("add-participant");
+  const groupSizeInput = document.getElementById("group-size");
 
-        <label for="contact-name">Contact Person:</label>
-        <input type="text" id="contact-name" name="contact-name" required />
+  bookingType.addEventListener("change", function () {
+    if (this.value === "one") {
+      singleFields.style.display = "block";
+      groupFields.style.display = "none";
+    } else if (this.value === "group") {
+      singleFields.style.display = "none";
+      groupFields.style.display = "block";
+    } else {
+      singleFields.style.display = "none";
+      groupFields.style.display = "none";
+    }
+  });
 
-        <label for="email">Email Address:</label>
-        <input type="email" id="email" name="email" required />
+  addParticipantBtn.addEventListener("click", function () {
+    const groupSize = parseInt(groupSizeInput.value);
 
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" required />
+    if (!groupSize || groupSize <= 0) {
+      alert("Please enter a valid group size before adding participants.");
+      return;
+    }
 
-        <label for="stall-type">Stall Type:</label>
-        <select id="stall-type" name="stall-type" required>
-          <option value="food">Food Stall</option>
-          <option value="crafts">Crafts and Products</option>
-          <option value="services">Services/Consultancy</option>
-        </select>
+    const currentParticipants = groupParticipants.children.length;
 
-        <!-- Payment Screenshot Upload -->
-        <label for="payment-screenshot-stall">Upload Payment Screenshot:</label>
-        <input type="file" id="payment-screenshot-stall" name="payment-screenshot-stall" accept="image/*" required />
+    if (currentParticipants >= groupSize) {
+      alert(`You can only add up to ${groupSize} participants.`);
+      return;
+    }
 
-        <!-- Consent Checkbox -->
-        <div class="checkbox-container">
-          <input type="checkbox" id="consent" name="consent" required />
-          <label for="consent">I agree that the payment is non-refundable.</label>
-        </div>        
+    const participantIndex = currentParticipants + 1;
+    const participantFields = `
+      <div class="participant">
+        <h4>Participant ${participantIndex}</h4>
+        <label for="group-name-${participantIndex}">Full Name:</label>
+        <input type="text" id="group-name-${participantIndex}" name="group-name-${participantIndex}" required />
 
+        <label for="group-email-${participantIndex}">Email Address:</label>
+        <input type="email" id="group-email-${participantIndex}" name="group-email-${participantIndex}" required />
 
-        <!-- Account Details -->
-        <p>Bank Account Details: [Enter Account Number, Bank Name]</p>
+        <label for="group-phone-${participantIndex}">Phone Number:</label>
+        <input type="tel" id="group-phone-${participantIndex}" name="group-phone-${participantIndex}" required />
 
-        <button type="submit" class="btn btn-secondary">Submit</button>
-      </form>
-    </div>
+        <label for="group-age-${participantIndex}">Age:</label>
+        <input type="number" id="group-age-${participantIndex}" name="group-age-${participantIndex}" min="1" required />
+
+        <label for="group-occupation-${participantIndex}">Occupation:</label>
+        <input type="text" id="group-occupation-${participantIndex}" name="group-occupation-${participantIndex}" required />
+      </div>
+    `;
+    groupParticipants.insertAdjacentHTML("beforeend", participantFields);
+  });
+
+  const participantForm = document.getElementById("participant-form");
+  participantForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const bookingTypeValue = bookingType.value;
+    let message = "";
+
+    if (bookingTypeValue === "one") {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const age = document.getElementById("age").value;
+      const occupation = document.getElementById("occupation").value;
+      message = `*Booking for One:*
+*Name:* ${name}
+*Email:* ${email}
+*Phone:* ${phone}
+*Age:* ${age}
+*Occupation:* ${occupation}`;
+    } else if (bookingTypeValue === "group") {
+      const groupSize = document.getElementById("group-size").value;
+      message = `*Booking for Group:*
+*Group Size:* ${groupSize}
+*Participants:*`;
+
+      Array.from(groupParticipants.children).forEach((participant, index) => {
+        const participantName = participant.querySelector(`input[name=group-name-${index + 1}]`).value;
+        const participantEmail = participant.querySelector(`input[name=group-email-${index + 1}]`).value;
+        const participantPhone = participant.querySelector(`input[name=group-phone-${index + 1}]`).value;
+        const participantAge = participant.querySelector(`input[name=group-age-${index + 1}]`).value;
+        const participantOccupation = participant.querySelector(`input[name=group-occupation-${index + 1}]`).value;
+
+        message += `\n${index + 1}. *Name:* ${participantName}, *Email:* ${participantEmail}, *Phone:* ${participantPhone}, *Age:* ${participantAge}, *Occupation:* ${participantOccupation}`;
+      });
+    }
+
+    const whatsappLink = `https://wa.me/03352949414?text=${encodeURIComponent(message)}`;
+    window.open(whatsappLink, "_blank");
+  });
+</script>
+
+ <!-- Stall/Business Booking Form (Modal) -->
+<div class="modal" id="stall-form-modal">
+  <div class="modal-content">
+    <span class="close" id="close-stall-form">&times;</span>
+    <h3>Stall/Business Registration</h3>
+    <form id="stall-form">
+      <label for="business-name">Business Name:</label>
+      <input type="text" id="business-name" name="business-name" required />
+
+      <label for="contact-name">Contact Person:</label>
+      <input type="text" id="contact-name" name="contact-name" required />
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required />
+
+      <label for="stall-category">Select Stall/Activity Category:</label>
+      <select id="stall-category" name="stall-category" required>
+        <option value="">-- Select a Category --</option>
+        <option value="food">Food Stall</option>
+        <option value="gyms">Gyms/Fitness</option>
+        <option value="mental_health">Mental Health</option>
+        <option value="real_estate">Real Estate</option>
+        <option value="pets">Animal/Pets</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="other">Other Activities</option>
+      </select>
+
+      <button type="submit" class="btn btn-secondary">Submit</button>
+    </form>
   </div>
+</div>
+
+<script>
+  const stallForm = document.getElementById("stall-form");
+
+  stallForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    // Gather form inputs
+    const businessName = document.getElementById("business-name").value;
+    const contactName = document.getElementById("contact-name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const stallCategory = document.getElementById("stall-category").value;
+
+    // Create WhatsApp message
+    const message = `Stall/Business Registration:\n
+      - Business Name: ${businessName}\n
+      - Contact Person: ${contactName}\n
+      - Email: ${email}\n
+      - Phone: ${phone}\n
+      - Category: ${stallCategory}`;
+
+    // Redirect to WhatsApp
+    const whatsappNumber = "03352949414"; // Replace with your WhatsApp number
+    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappLink, "_blank");
+  });
+</script>
+
 </section>
 
   
