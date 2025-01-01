@@ -117,3 +117,4 @@ window.addEventListener('click', function (event) {
     stallModal.style.display = 'none';
   }
 });
+
