@@ -199,6 +199,8 @@
   </div>
 </div>
 
+
+<!--CHANGES HERE FOR BACKEND!!!!!!!!!!!!!!! -->
 <script>
   const bookingType = document.getElementById("booking-type");
   const singleFields = document.getElementById("single-fields");
@@ -207,6 +209,7 @@
   const addParticipantBtn = document.getElementById("add-participant");
   const groupSizeInput = document.getElementById("group-size");
 
+  
   bookingType.addEventListener("change", function () {
     if (this.value === "one") {
       singleFields.style.display = "block";
@@ -220,6 +223,7 @@
     }
   });
 
+ 
   addParticipantBtn.addEventListener("click", function () {
     const groupSize = parseInt(groupSizeInput.value);
 
@@ -259,30 +263,40 @@
   });
 
   const participantForm = document.getElementById("participant-form");
-  participantForm.addEventListener("submit", function (event) {
+  participantForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const bookingTypeValue = bookingType.value;
     let message = "";
+    const participants = [];
 
+ 
     if (bookingTypeValue === "one") {
+    
       const name = document.getElementById("name").value;
       const email = document.getElementById("email").value;
       const phone = document.getElementById("phone").value;
       const age = document.getElementById("age").value;
       const occupation = document.getElementById("occupation").value;
-      message = `*Booking for One:*
-*Name:* ${name}
-*Email:* ${email}
-*Phone:* ${phone}
-*Age:* ${age}
-*Occupation:* ${occupation}`;
-    } else if (bookingTypeValue === "group") {
-      const groupSize = document.getElementById("group-size").value;
-      message = `*Booking for Group:*
-*Group Size:* ${groupSize}
-*Participants:*`;
+      message = `*Booking for One:*\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*Age:* ${age}\n*Occupation:* ${occupation}`;
 
+      
+      participants.push({
+        name: name,
+        email: email,
+        phone: phone,
+        age: age,
+        occupation: occupation,
+      });
+
+      var participant = participants[0];
+
+    } else if (bookingTypeValue === "group") {
+      
+      const groupSize = document.getElementById("group-size").value;
+      message = `*Booking for Group:*\n*Group Size:* ${groupSize}\n*Participants:*`;
+
+      
       Array.from(groupParticipants.children).forEach((participant, index) => {
         const participantName = participant.querySelector(`input[name=group-name-${index + 1}]`).value;
         const participantEmail = participant.querySelector(`input[name=group-email-${index + 1}]`).value;
@@ -290,14 +304,50 @@
         const participantAge = participant.querySelector(`input[name=group-age-${index + 1}]`).value;
         const participantOccupation = participant.querySelector(`input[name=group-occupation-${index + 1}]`).value;
 
+        participants.push({
+          name: participantName,
+          email: participantEmail,
+          phone: participantPhone,
+          age: participantAge,
+          occupation: participantOccupation,
+        });
+
         message += `\n${index + 1}. *Name:* ${participantName}, *Email:* ${participantEmail}, *Phone:* ${participantPhone}, *Age:* ${participantAge}, *Occupation:* ${participantOccupation}`;
       });
+
+      var participant = null;
     }
 
-    const whatsappLink = `https://wa.me/03352949414?text=${encodeURIComponent(message)}`;
-    window.open(whatsappLink, "_blank");
+    
+    try {
+      const response = await fetch("http://localhost:5000/api/bookings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          bookingType: bookingTypeValue,
+          groupSize: bookingTypeValue === "group" ? groupSizeInput.value : null,
+          participant: participant,  
+          participants: bookingTypeValue === "group" ? participants : null, 
+        }),
+      });
+
+      
+      if (response.ok) {
+        alert("Booking submitted successfully!");
+        window.open(`https://wa.me/03352949414?text=${encodeURIComponent(message)}`, "_blank");
+      } else {
+        alert("Error submitting booking. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting booking:", error);
+      alert("An error occurred. Please try again later.");
+    }
   });
 </script>
+
+
 
  <!-- Stall/Business Booking Form (Modal) -->
 <div class="modal" id="stall-form-modal">
